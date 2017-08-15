@@ -1,0 +1,63 @@
+#person{
+  position: relative;
+  text-align: center;
+  .loading{
+    position: absolute;
+    top: 50%;
+    margin-top: -25px;
+  }
+  .wrap{
+    margin: 20px auto;
+    width: 90%;
+    box-shadow: lightgrey 0 0 10px;
+    padding: 10px;
+  }
+  .head{
+    text-align: left;
+    &::after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+    h1{
+      margin: 0;
+    }
+    span{
+      display: block;
+    }
+  }
+  .img{
+    width: 25%;
+    padding-bottom: 35%;
+    overflow: hidden;
+    display: inline-block;
+  }
+  .intro{
+    float: right;
+    width: 75%;
+    box-sizing: border-box;
+    padding: 10px 20px;
+  }
+  .works{
+    text-align: left;
+  }
+  .directors{
+    overflow-x: auto;
+    margin-top: 10px;
+    white-space: nowrap;
+  }
+  .image{
+    display: inline-block;
+    width: 25%;
+    position: relative;
+    margin-right: 20px;
+    cursor: pointer;
+    vertical-align: top;
+  }
+  .avatar{
+    position: relative;
+    width: 100%;
+    padding-bottom: 130%;
+    overflow: hidden;
+  }
+}

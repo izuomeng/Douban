@@ -5,6 +5,7 @@ import Book from './book/router'
 import Music from './music/router'
 import About from './about/router'
 import Details from './details/router'
+import Person from './person/router'
 
 Vue.use(Router)
 
@@ -15,6 +16,14 @@ export default new Router({
     Book,
     Music,
     About,
-    Details
-  ]
+    Details,
+    Person
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  }
 })

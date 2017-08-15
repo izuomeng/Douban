@@ -30,6 +30,9 @@
       },
       jump (title) {
         this.$store.dispatch('changeTitle', title)
+      },
+      toIndex () {
+        this.$router.push('/movie')
       }
     },
     computed: {

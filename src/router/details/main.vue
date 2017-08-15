@@ -65,10 +65,10 @@
             主演
           </h4>
           <div class="directors">
-            <div v-for="i in item.casts" class="image">
+            <div v-for="i in item.casts" class="image" @click="goPersonPage(i.id)">
               <div class="avatar" :style="{ backgroundImage: 'url('+i.avatars.large+')', backgroundSize: 'cover'}">
               </div>
-              <div style="text-align: center">
+              <div style="text-align: center; white-space: normal">
                 {{ i.name }}
               </div>
             </div>
@@ -81,6 +81,7 @@
 
 <script>
   export default {
+    name: 'details',
     data () {
       return {
         id: this.$route.params.id,
@@ -132,7 +133,7 @@
     },
     methods: {
       goPersonPage (id) {
-        console.log(id)
+        this.$router.push({name: 'person', params: {id: id}})
       },
       getMovie (id) {
         let self = this
@@ -145,23 +146,12 @@
           })
         }
       },
-      getComments (url) {
-        let self = this
-        if (url) {
-          self.$G.requestSingleMovie(url).then(function (response) {
-            self.comments = response.data
-            self.loading = false
-          }).catch(function (error) {
-            throw new Error(error)
-          })
-        }
-      },
       // 视差滚动
       parallax () {
         let top = document.body.scrollTop
         let img = document.getElementById('scrollImg')
         if (img) {
-          if (top < (img.height - img.width * 0.8)) {
+          if (top < (img.height - img.width * 0.8) && top >= 0) {
             img.style.top = -top + 'px'
           }
         }
