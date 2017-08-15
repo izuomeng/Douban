@@ -53,7 +53,7 @@
             导演
           </h4>
           <div class="directors">
-            <div v-for="i in item.directors" class="image">
+            <div v-for="i in item.directors" class="image" @click="goPersonPage(i.id)">
               <div class="avatar" :style="{ backgroundImage: 'url('+i.avatars.large+')', backgroundSize: 'cover'}">
               </div>
               <div style="text-align: center">
@@ -131,10 +131,13 @@
       document.removeEventListener('scroll', this.parallax)
     },
     methods: {
+      goPersonPage (id) {
+        console.log(id)
+      },
       getMovie (id) {
         let self = this
         if (id) {
-          self.$G.requestSingleMovie(id).then(function (response) {
+          self.$G.requestSingleItem('subject/' + id).then(function (response) {
             self.item = response.data
             self.loading = false
           }).catch(function (error) {

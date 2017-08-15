@@ -36,7 +36,7 @@ export default {
       throw new Error('加载错误' + error)
     })
   },
-  requestSingleMovie (id) {
-    return axios.get('/api/movie/subject/' + id)
+  requestSingleItem (url) {
+    return axios.get('/api/movie/' + url)
   }
 }

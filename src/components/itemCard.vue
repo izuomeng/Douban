@@ -1,7 +1,6 @@
 <template>
   <div id="itemCard" @click="jump()">
-    <div class="left">
-      <img :src="item.images.large" style="width: 100%; position: absolute"/>
+    <div class="left" :style="{ backgroundImage: 'url('+item.images.large+')', backgroundSize: 'cover'}">
     </div>
     <div class="right">
       <h3>{{ item.title }}</h3>

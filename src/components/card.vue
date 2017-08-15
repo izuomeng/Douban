@@ -1,8 +1,7 @@
 <template>
   <div id="card" @click="jump()">
     <mu-card>
-      <mu-card-media class="imgContent">
-        <img :src=movieItem.images.large class="img"/>
+      <mu-card-media class="imgContent" :style="{ backgroundImage: 'url('+movieItem.images.large+')', backgroundSize: 'cover'}">
       </mu-card-media>
       <mu-card-text class="text">
         <div class="title">
@@ -39,10 +38,6 @@
       width: 100%;
       padding-bottom: 138%;
       overflow: hidden;
-      .img{
-        position: absolute;
-        width: 100%;
-      }
     }
     .title{
       white-space: nowrap;
