@@ -1,6 +1,6 @@
 # douban
 
-> A Vue.js project
+> A Vue.js project like douban made by zuomeng
 
 ## Build Setup
 
