@@ -1,0 +1,4 @@
+export const CHNAGE_MOVIE_TAB = 'CHANGE_MOVIE_TAB'
+export const SET_MOVIE_ITEMS = 'SET_MOVIE_ITEMS'
+export const CHANGE_TITLE = 'CHANGE_TITLE'
+export const SET_TOTAL = 'SET_TOTAL'
