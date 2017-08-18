@@ -12,7 +12,7 @@
             {{ item.name }}
           </h1>
           <span>性别：{{ item.gender }}</span>
-          <span>英文名：{{ item.aka_en.join(' / ') }}</span>
+          <span>别名：{{ item.aka_en.join(' / ') }}</span>
           <span>出生地：{{ item.born_place }}</span>
         </div>
       </div>
