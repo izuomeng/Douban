@@ -53,7 +53,7 @@
             导演
           </h4>
           <div class="directors">
-            <div v-for="i in item.directors" class="image" @click="goPersonPage(i.id)">
+            <div v-for="i in item.directors" class="image" @click="goPersonPage(i.id)" :key="i.id">
               <div class="avatar" :style="{ backgroundImage: 'url('+i.avatars.large+')', backgroundSize: 'cover'}">
               </div>
               <div style="text-align: center">
@@ -65,7 +65,7 @@
             主演
           </h4>
           <div class="directors">
-            <div v-for="i in item.casts" class="image" @click="goPersonPage(i.id)">
+            <div v-for="i in item.casts" class="image" @click="goPersonPage(i.id)" :key="i.id">
               <div class="avatar" :style="{ backgroundImage: 'url('+i.avatars.large+')', backgroundSize: 'cover'}">
               </div>
               <div style="text-align: center; white-space: normal">
