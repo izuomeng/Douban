@@ -19,7 +19,7 @@
       <div class="works">
         <h4>影人作品</h4>
         <div class="directors">
-          <div v-for="i in item.works" class="image" @click="jump(i.subject.id)">
+          <div v-for="i in item.works" class="image" @click="jump(i.subject.id)" :key="i.subject.id">
             <div class="avatar" :style="{ backgroundImage: 'url('+i.subject.images.large+')', backgroundSize: 'cover'}">
             </div>
             <div style="text-align: center; white-space: normal">

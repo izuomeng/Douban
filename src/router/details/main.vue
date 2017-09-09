@@ -54,7 +54,7 @@
           </h4>
           <div class="directors">
             <div v-for="i in item.directors" class="image" @click="goPersonPage(i.id)" :key="i.id">
-              <div class="avatar" :style="{ backgroundImage: 'url('+i.avatars.large+')', backgroundSize: 'cover'}">
+              <div class="avatar" :style="{ backgroundImage: 'url('+(i.avatars?i.avatars.large:'http://img7.doubanio.com/f/movie/30c6263b6db26d055cbbe73fe653e29014142ea3/pics/movie/movie_default_large.png')+')', backgroundSize: 'cover'}">
               </div>
               <div style="text-align: center">
                 {{ i.name }}
@@ -66,7 +66,7 @@
           </h4>
           <div class="directors">
             <div v-for="i in item.casts" class="image" @click="goPersonPage(i.id)" :key="i.id">
-              <div class="avatar" :style="{ backgroundImage: 'url('+i.avatars.large+')', backgroundSize: 'cover'}">
+              <div class="avatar" :style="{ backgroundImage: 'url('+(i.avatars?i.avatars.large:'http://img7.doubanio.com/f/movie/30c6263b6db26d055cbbe73fe653e29014142ea3/pics/movie/movie_default_large.png')+')', backgroundSize: 'cover'}">
               </div>
               <div style="text-align: center; white-space: normal">
                 {{ i.name }}
