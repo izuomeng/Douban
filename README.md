@@ -1,6 +1,7 @@
 # douban
 
 > A Vue.js project like douban made by zuomeng
+在线预览：http://47.95.224.52/
 
 ## Build Setup
 
