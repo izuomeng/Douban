@@ -36,7 +36,7 @@
       },
       handleSearch () {
         let self = this
-        this.$router.push({name: 'search', params: {param: self.searchText}})
+        this.$router.push({name: 'search', query: {question: self.searchText}})
       }
     },
     computed: {

@@ -27,7 +27,7 @@ import itemCard from '../../components/itemCard.vue'
 export default {
   data () {
     return {
-      searchText: this.$route.params.param,
+      searchText: this.$route.query.question,
       loading: true,
       items: []
     }
@@ -57,7 +57,7 @@ export default {
   watch: {
     $route () {
       this.loading = true
-      this.searchText = this.$route.params.param
+      this.searchText = this.$route.query.question
       this.getMovies()
     }
   },
