@@ -41,6 +41,9 @@ export default {
   mounted () {
     this.$G.prepareLoading(document.getElementById('search'))
   },
+  activated () {
+    this.getMovies()
+  },
   methods: {
     getMovies () {
       this.$G.searchMovie(this.searchText).then((response) => {
@@ -50,6 +53,17 @@ export default {
         throw new Error('加载失败 ' + error)
       })
     }
+  },
+  watch: {
+    $route () {
+      this.loading = true
+      this.searchText = this.$route.params.param
+      this.getMovies()
+    }
+  },
+  beforeRouteLeave (to, from, next) {
+    this.$parent.$refs.headBar.searchText = ''
+    next()
   }
 }
 </script>
