@@ -62,6 +62,11 @@
       jump (id) {
         this.$router.push({name: 'details', params: {id: id}})
       }
+    },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        vm.$store.dispatch('changeTitle', '影人')
+      })
     }
   }
 </script>

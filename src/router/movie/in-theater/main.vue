@@ -7,6 +7,11 @@
   export default {
     components: {
       cardMovies
+    },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        vm.$parent.activeTab = 'in_theaters'
+      })
     }
   }
 </script>

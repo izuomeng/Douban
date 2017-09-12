@@ -168,6 +168,11 @@
           this.item.collect_count++
         }
       }
+    },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        vm.$store.dispatch('changeTitle', '电影介绍')
+      })
     }
   }
 </script>

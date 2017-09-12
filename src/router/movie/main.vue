@@ -61,6 +61,11 @@
           }
         }
       }
+    },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        vm.$store.dispatch('changeTitle', '电影')
+      })
     }
   }
 </script>

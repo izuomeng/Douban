@@ -18,7 +18,6 @@
 
 <script>
   export default {
-    ref: 'headBar',
     data () {
       return {
         open: false,

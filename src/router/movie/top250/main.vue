@@ -71,6 +71,11 @@
     },
     components: {
       itemCard
+    },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        vm.$parent.activeTab = 'top250'
+      })
     }
   }
 </script>

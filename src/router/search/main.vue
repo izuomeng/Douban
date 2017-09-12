@@ -29,7 +29,8 @@ export default {
     return {
       searchText: this.$route.query.question,
       loading: true,
-      items: []
+      items: [],
+      previousTitle: '电影'
     }
   },
   components: {
@@ -61,8 +62,15 @@ export default {
       this.getMovies()
     }
   },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.previousTitle = vm.$store.state.title
+      vm.$store.dispatch('changeTitle', `"${to.query.question}"的搜索结果`)
+    })
+  },
   beforeRouteLeave (to, from, next) {
     this.$parent.$refs.headBar.searchText = ''
+    this.$store.dispatch('changeTitle', this.previousTitle)
     next()
   }
 }
