@@ -27,12 +27,12 @@ import itemCard from '../../components/itemCard.vue'
 export default {
   data () {
     return {
+      searchText: this.$route.params.param,
       loading: true,
       items: []
     }
   },
   components: {
-    searchHead,
     itemCard
   },
   created () {
@@ -43,7 +43,12 @@ export default {
   },
   methods: {
     getMovies () {
-      this.$G.searchMovies('search', this, `?q=${this.$route.params.id}`)
+      this.$G.searchMovie(this.searchText).then((response) => {
+        this.loading = false
+        this.items = response.data.subjects
+      }).catch((error) => {
+        throw new Error('加载失败 ' + error)
+      })
     }
   }
 }

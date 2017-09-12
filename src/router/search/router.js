@@ -1,6 +1,7 @@
 import search from './main.vue'
 
 export default {
-  path: '/search:id',
+  name: 'search',
+  path: '/search?question=:param',
   component: search
 }

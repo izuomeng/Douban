@@ -38,5 +38,8 @@ export default {
   },
   requestSingleItem (url) {
     return axios.get('/api/movie/' + url)
+  },
+  searchMovie (param) {
+    return axios.get(`/api/movie/search?q=${param}`)
   }
 }

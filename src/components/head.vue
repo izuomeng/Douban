@@ -2,7 +2,8 @@
   <div id="head-bar">
     <mu-appbar :title="storeTitle" id="appBar" titleClass="headBarTitle">
       <mu-icon-button icon="menu" slot="left" @click="toggle(true)"/>
-      <mu-text-field icon="search" class="appbar-search-field"  slot="right" hintText="请输入搜索内容"/>
+      <mu-text-field icon="search" class="appbar-search-field"  slot="right"
+      hintText="请输入搜索内容" @change="handleSearch()" v-model="searchText"/>
     </mu-appbar>
     <mu-drawer :open="open" :docked="docked" @close="toggle()">
       <mu-list @itemClick="docked ? '' : toggle()">
@@ -20,7 +21,8 @@
     data () {
       return {
         open: false,
-        docked: true
+        docked: true,
+        searchText: ''
       }
     },
     methods: {
@@ -31,8 +33,9 @@
       jump (title) {
         this.$store.dispatch('changeTitle', title)
       },
-      toIndex () {
-        this.$router.push('/movie')
+      handleSearch () {
+        let self = this
+        this.$router.push({name: 'search', params: {param: self.searchText}})
       }
     },
     computed: {

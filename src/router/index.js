@@ -6,6 +6,7 @@ import Music from './music/router'
 import About from './about/router'
 import Details from './details/router'
 import Person from './person/router'
+import Search from './search/router'
 
 Vue.use(Router)
 
@@ -17,7 +18,8 @@ export default new Router({
     Music,
     About,
     Details,
-    Person
+    Person,
+    Search
   ],
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {
