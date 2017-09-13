@@ -34,7 +34,15 @@
         this.$store.dispatch('changeTitle', title)
       },
       handleSearch () {
-        let self = this
+        let self = this,
+          store = window.sessionStorage,
+          questions = store.getItem('questions')
+        if (questions) {
+          questions += `,${self.searchText}`
+        } else {
+          questions = self.searchText
+        }
+        store.setItem('questions', questions)
         this.$router.push({name: 'search', query: {question: self.searchText}})
       }
     },
