@@ -2,8 +2,9 @@
   <div id="head-bar">
     <mu-appbar :title="storeTitle" id="appBar" titleClass="headBarTitle">
       <mu-icon-button icon="menu" slot="left" @click="toggle(true)"/>
-      <mu-text-field icon="search" class="appbar-search-field"  slot="right"
-      hintText="请输入搜索内容" @change="handleSearch()" v-model="searchText"/>
+      <mu-auto-complete :icon="icon" class="appbar-search-field"  slot="right"
+      hintText="请输入搜索内容" @change="handleSearch()" v-model="searchText"
+      @input="handleInput" :dataSource="dataSource" @focus="removeIcon()" @blur="addIcon()"/>
     </mu-appbar>
     <mu-drawer :open="open" :docked="docked" @close="toggle()">
       <mu-list @itemClick="docked ? '' : toggle()">
@@ -22,7 +23,9 @@
       return {
         open: false,
         docked: true,
-        searchText: ''
+        searchText: '',
+        dataSource: [],
+        icon: 'search'
       }
     },
     methods: {
@@ -38,12 +41,34 @@
           store = window.sessionStorage,
           questions = store.getItem('questions')
         if (questions) {
-          questions += `,${self.searchText}`
+          if (questions.indexOf(self.searchText) < 0) {
+            questions += `,${self.searchText}`
+          }
         } else {
           questions = self.searchText
         }
         store.setItem('questions', questions)
         this.$router.push({name: 'search', query: {question: self.searchText}})
+      },
+      handleInput (val) {
+        let store = window.sessionStorage,
+          questions = store.getItem('questions'),
+          data = []
+        if (questions) {
+          questions = questions.split(',')
+        }
+        questions.forEach((element) => {
+          if (element.indexOf(val) >= 0) {
+            data.push(element)
+          }
+        })
+        this.dataSource = data
+      },
+      removeIcon () {
+        this.icon = ''
+      },
+      addIcon () {
+        this.icon = 'search'
       }
     },
     computed: {
