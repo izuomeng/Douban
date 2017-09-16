@@ -110,10 +110,10 @@
         return this.item.countries ? this.item.countries.join(' / ') : ''
       },
       hadWatch () {
-        return this.item.wish_count ? this.item.wish_count : '0' + '人看过'
+        return (this.item.wish_count ? this.item.wish_count : '0') + '人看过'
       },
       neverWatch () {
-        return this.item.collect_count ? this.item.collect_count : '0' + '人想看'
+        return (this.item.collect_count ? this.item.collect_count : '0') + '人想看'
       },
       backImage () {
         return {
