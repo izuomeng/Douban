@@ -7,9 +7,19 @@ export default {
     element.style.minHeight = (height - top) + 'px'
   },
   requestMovies (url, that, params = '?count=20') {
-    let self = that
+    let self = that,
+      tid
+    clearTimeout(tid)
+    tid = setTimeout(() => {
+      self.loading = false
+      self.toast = true
+      setTimeout(() => {
+        self.toast = false
+      }, 3000)
+    }, 5000)
     if (self.$store.state[url].length <= 0) {
-      axios.get(`/api/movie/${url + params}`).then(function (response) {
+      axios.get(`/api/movie/${url + params}`).then((response) => {
+        clearTimeout(tid)
         self.loading = false
         self.items = response.data.subjects
         self.total = response.data.total
@@ -19,6 +29,7 @@ export default {
         throw new Error(`加载错误: ${error}`)
       })
     } else {
+      clearTimeout(tid)
       self.loading = false
       self.items = self.$store.state[url]
       self.total = self.$store.state[url].total
@@ -39,7 +50,7 @@ export default {
   requestSingleItem (url) {
     return axios.get(`/api/movie/${url}`)
   },
-  searchMovie (param) {
-    return axios.get(`/api/movie/search?q=${param}`)
+  searchMovie (type, param) {
+    return axios.get(`/api/${type}/search?q=${param}`)
   }
 }

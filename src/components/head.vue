@@ -10,7 +10,7 @@
       <mu-list @itemClick="docked ? '' : toggle()">
         <mu-list-item title="电影" to="/movie" @click="jump('电影')"/>
         <mu-list-item title="音乐" to="/music" @click="jump('音乐')"/>
-        <mu-list-item title="图书" to="book" @click="jump('图书')"/>
+        <mu-list-item title="图书" to="/book" @click="jump('图书')"/>
         <mu-list-item title="关于" to="/about" @click="jump('关于')"/>
       </mu-list>
     </mu-drawer>
@@ -56,13 +56,13 @@
           data = []
         if (questions) {
           questions = questions.split(',')
+          questions.forEach((element) => {
+            if (element.indexOf(val) >= 0) {
+              data.push(element)
+            }
+          })
+          this.dataSource = data
         }
-        questions.forEach((element) => {
-          if (element.indexOf(val) >= 0) {
-            data.push(element)
-          }
-        })
-        this.dataSource = data
       },
       removeIcon () {
         this.icon = ''

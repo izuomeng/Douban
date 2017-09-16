@@ -2,10 +2,12 @@
 
 <template>
   <div id="subject">
+    <mu-toast v-if="toast" message="请求数据失败"/>
     <mu-circular-progress :size="50" :strokeWidth="3" v-if="loading" class="loading"/>
     <div v-if="!loading" class="wrap">
       <div class="header" id="detailHeader">
-        <img :src="item.images.large" style="width: 100%; position: absolute" id="scrollImg"/>
+        <img :src="item.images?item.images.large:'http://img7.doubanio.com/f/movie/30c6263b6db26d055cbbe73fe653e29014142ea3/pics/movie/movie_default_large.png'" 
+        style="width: 100%; position: absolute" id="scrollImg"/>
       </div>
       <div class="content">
         <div class="top">
@@ -14,12 +16,13 @@
               {{ item.title }}
             </h2>
             <h4>
-              评分：{{ item.rating.average }}
+              评分：{{ item.rating?item.rating.average:'0' }}
               <span style="color: grey">（{{ item.ratings_count }}人评价）</span>
             </h4>
           </div>
           <div class="poster">
-            <img :src="item.images.large" style="width: 100%; position: absolute"/>
+            <img :src="item.images?item.images.large:'http://img7.doubanio.com/f/movie/30c6263b6db26d055cbbe73fe653e29014142ea3/pics/movie/movie_default_large.png'" 
+            style="width: 100%; position: absolute"/>
           </div>
         </div>
         <mu-raised-button class="demo-raised-button" :label="hadWatch" icon="done" primary style="min-width: 165px" @click="disableButton(1)" :disabled="disabled"/>
@@ -92,28 +95,29 @@
         item: {},
         loading: true,
         comments: {},
-        disabled: false
+        disabled: false,
+        toast: false
       }
     },
     computed: {
       names () {
-        return this.item.aka.join(' / ')
+        return this.item.aka ? this.item.aka.join(' / ') : ''
       },
       type () {
-        return this.item.genres.join(' / ')
+        return this.item.genres ? this.item.genres.join(' / ') : ''
       },
       countries () {
-        return this.item.countries.join(' / ')
+        return this.item.countries ? this.item.countries.join(' / ') : ''
       },
       hadWatch () {
-        return this.item.wish_count + '人看过'
+        return this.item.wish_count ? this.item.wish_count : '0' + '人看过'
       },
       neverWatch () {
-        return this.item.collect_count + '人想看'
+        return this.item.collect_count ? this.item.collect_count : '0' + '人想看'
       },
       backImage () {
         return {
-          backgroundImage: 'url(' + this.item.images.large + ')',
+          backgroundImage: 'url(' + this.item.images ? this.item.images.large : 'http://img7.doubanio.com/f/movie/30c6263b6db26d055cbbe73fe653e29014142ea3/pics/movie/movie_default_large.png' + ')',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat'
         }
@@ -140,11 +144,20 @@
         this.$router.push({name: 'person', params: {id: id}})
       },
       getMovie (id) {
-        let self = this
+        let tid
         if (id) {
-          self.$G.requestSingleItem('subject/' + id).then(function (response) {
-            self.item = response.data
-            self.loading = false
+          clearTimeout(tid)
+          tid = setTimeout(() => {
+            this.loading = false
+            this.toast = true
+            setTimeout(() => {
+              this.toast = false
+            }, 3000)
+          }, 5000)
+          this.$G.requestSingleItem(`subject/${id}`).then((response) => {
+            clearTimeout(tid)
+            this.item = response.data
+            this.loading = false
           }).catch(function (error) {
             throw new Error(error)
           })

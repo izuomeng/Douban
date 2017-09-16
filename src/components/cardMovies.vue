@@ -1,5 +1,6 @@
 <template>
   <div :id="title" class="cardMovies">
+    <mu-toast v-if="toast" message="请求数据失败"/>
     <mu-circular-progress :size="50" :strokeWidth="3" v-if="loading" class="loading"/>
     <mu-row v-if="!loading">
       <mu-col width="33" tablet="25" desktop="20" v-for="item in items" :key="item.id" class="movieItem">
@@ -26,7 +27,8 @@
         items: [],
         moreLoading: false,
         total: 0,
-        f: this.watchScroll.bind(this)
+        f: this.watchScroll.bind(this),
+        toast: false
       }
     },
     computed: {
@@ -99,6 +101,10 @@
     .load{
       line-height: 24px;
       font-size: 16px;
+    }
+    .mu-toast{
+        margin-left: calc(~"50% - 144px");
+        top: 132px
     }
   }
 </style>

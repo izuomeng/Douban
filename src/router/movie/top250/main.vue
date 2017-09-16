@@ -1,6 +1,7 @@
 <style lang="less" src="./style.less"></style>
 <template ref="top250">
   <div id="top250">
+    <mu-toast v-if="toast" message="请求数据失败"/>
     <mu-circular-progress :size="50" :strokeWidth="3" v-if="loading" class="loading"/>
     <div class="movies" v-if="!loading">
       <item-card v-for="i in items" :item="i" :key="i.id"></item-card>
@@ -24,7 +25,8 @@
         items: [],
         moreLoading: false,
         total: 0,
-        f: this.watchScroll.bind(this)
+        f: this.watchScroll.bind(this),
+        toast: false
       }
     },
     computed: {
