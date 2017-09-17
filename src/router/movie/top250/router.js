@@ -1,4 +1,4 @@
-import top250 from './main.vue'
+const top250 = () => import('./main.vue')
 
 export default {
   path: 'top250',

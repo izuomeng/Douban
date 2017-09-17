@@ -1,4 +1,4 @@
-import comingSoon from './main.vue'
+const comingSoon = () => import('./main.vue')
 
 export default {
   path: 'coming_soon',

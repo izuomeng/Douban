@@ -1,4 +1,4 @@
-import book from './main.vue'
+const book = () => import('./main.vue')
 
 export default {
   path: '/book',

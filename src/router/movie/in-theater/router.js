@@ -1,4 +1,4 @@
-import inTheater from './main.vue'
+const inTheater = () => import('./main.vue')
 
 export default {
   path: 'in_theaters',

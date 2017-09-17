@@ -1,4 +1,4 @@
-import detail from './main.vue'
+const detail = () => import('./main.vue')
 
 export default {
   path: '/movie/subject/:id',

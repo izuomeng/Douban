@@ -1,4 +1,4 @@
-import music from './main.vue'
+const music = () => import('./main.vue')
 
 export default {
   path: '/music',
