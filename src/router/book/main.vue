@@ -1,4 +1,4 @@
-<<style lang="less" src="./style.less"></style>
+<style lang="less" src="./style.less"></style>
 
 <template>
   <div class="book">
