@@ -1,7 +1,7 @@
 # douban
 
 > A Vue.js project like douban made by zuomeng
-技术栈：
+#### 技术栈：
 vue
 vue-router
 vuex
