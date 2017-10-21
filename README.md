@@ -2,13 +2,13 @@
 
 > A Vue.js project like douban made by zuomeng
 #### 技术栈：
-> vue
-> vue-router
-> vuex
-> mintUI
-> axios
-> webpack
-> eslint
+vue<br>
+vue-router<br>
+vuex<br>
+mintUI<br>
+axios<br>
+webpack<br>
+eslint<br>
 #### 在线预览：http://47.95.224.52/
 
 ## Build Setup
