@@ -63,8 +63,9 @@
           return
         }
         if (document.body) {
-          let body = document.body
-          if ((body.scrollTop === body.offsetHeight - window.innerHeight) && (!self.moreLoading)) {
+          let body = document.body,
+            scrollTop = body.scrollTop || document.documentElement.scrollTop || window.scrollY
+          if ((scrollTop === body.offsetHeight - window.innerHeight) && (!self.moreLoading)) {
             self.moreLoading = true
             self.$G.loadMoreMovies('top250', self.items.length, self)
           }

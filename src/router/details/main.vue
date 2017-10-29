@@ -7,7 +7,7 @@
     <div v-if="!loading" class="wrap">
       <div class="header" id="detailHeader">
         <img :src="item.images?item.images.large:'http://img7.doubanio.com/f/movie/30c6263b6db26d055cbbe73fe653e29014142ea3/pics/movie/movie_default_large.png'" 
-        style="width: 100%; position: absolute" id="scrollImg"/>
+         class="scrollImg" id="scrollImg"/>
       </div>
       <div class="content">
         <div class="top">
@@ -165,11 +165,11 @@
       },
       // 视差滚动
       parallax () {
-        let top = document.body.scrollTop
+        let top = document.body.scrollTop || document.documentElement.scrollTop || window.scrollY
         let img = document.getElementById('scrollImg')
         if (img) {
           if (top < (img.height - img.width * 0.8) && top >= 0) {
-            img.style.top = -top + 'px'
+            img.style.transform = `translateY(-${top}px)`
           }
         }
       },
