@@ -5,7 +5,7 @@
 vue<br>
 vue-router<br>
 vuex<br>
-mintUI<br>
+museUI<br>
 axios<br>
 webpack<br>
 eslint<br>
